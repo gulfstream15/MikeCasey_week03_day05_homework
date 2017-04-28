@@ -25,6 +25,21 @@ class Customer
     return results.map {|film| Film.new(film) }
   end
 
+  def tickets()
+    sql = "SELECT tickets.* FROM tickets
+           WHERE customer_id = #{@id};"
+    results = SqlRunner.run(sql)
+    return results.map {|ticket| Ticket.new(ticket) }
+  end
+
+  def Customer.find(id)
+    sql = "SELECT * FROM films WHERE id = #{id};"
+    films = SqlRunner.run(sql)
+    film_hash = films.first
+    film = Customer.new(film_hash)
+    return film
+  end
+
   def Customer.all()
     sql = "SELECT * FROM customers"
     return Customer.get_many(sql)
