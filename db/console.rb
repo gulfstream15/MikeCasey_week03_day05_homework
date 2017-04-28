@@ -9,9 +9,9 @@ customer2 = Customer.new({ 'name' => 'John', 'funds' => 25})
 customer2.save()
 
 film1 = Film.new({ 'title' => 'Batman Begins', 'price' => 10})
-# film1.save()
+film1.save()
 film2 = Film.new({ 'title' => 'Spiderman Ends', 'price' => 8})
-# film2.save()
+film2.save()
 
 binding.pry
 nil
