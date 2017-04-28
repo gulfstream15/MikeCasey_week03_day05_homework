@@ -32,12 +32,19 @@ class Customer
     return results.map {|ticket| Ticket.new(ticket) }
   end
 
+  # def total_tickets()
+  #   sql = "SELECT tickets.* FROM tickets
+  #          WHERE customer_id = #{@id};"
+  #   results = SqlRunner.run(sql)
+  #   return results.length()
+  # end
+
   def Customer.find(id)
     sql = "SELECT * FROM films WHERE id = #{id};"
     films = SqlRunner.run(sql)
     film_hash = films.first
-    film = Customer.new(film_hash)
-    return film
+    film_objects = Customer.new(film_hash)
+    return film_objects
   end
 
   def Customer.all()
