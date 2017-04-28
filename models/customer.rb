@@ -17,6 +17,14 @@ class Customer
     @id = user['id'].to_i
   end
 
+  # def films()
+  #   sql = "SELECT films.* FROM films
+  #          INNER JOIN visits ON visits.location_id = locations.id
+  #          WHERE user_id = #{@id};"
+  #   results = SqlRunner.run(sql)
+  #   return results.map {|location| Location.new(location) }
+  # end
+
   def Customer.all()
     sql = "SELECT * FROM customers"
     return Customer.get_many(sql)
