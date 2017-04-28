@@ -17,13 +17,13 @@ class Customer
     @id = user['id'].to_i
   end
 
-  # def films()
-  #   sql = "SELECT films.* FROM films
-  #          INNER JOIN visits ON visits.location_id = locations.id
-  #          WHERE user_id = #{@id};"
-  #   results = SqlRunner.run(sql)
-  #   return results.map {|location| Location.new(location) }
-  # end
+  def films()
+    sql = "SELECT films.* FROM films
+           INNER JOIN tickets ON tickets.film_id = films.id
+           WHERE customer_id = #{@id};"
+    results = SqlRunner.run(sql)
+    return results.map {|film| Film.new(film) }
+  end
 
   def Customer.all()
     sql = "SELECT * FROM customers"

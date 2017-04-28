@@ -17,6 +17,13 @@ class Film
     @id = user['id'].to_i
   end
 
+  def customers()
+    sql = "SELECT customers.* FROM customers
+           INNER JOIN tickets ON tickets.customer_id = customers.id
+           WHERE film_id = #{@id};"
+    return Customer.get_many(sql)
+  end
+
   def Film.all()
     sql = "SELECT * FROM films"
     return Film.get_many(sql)
