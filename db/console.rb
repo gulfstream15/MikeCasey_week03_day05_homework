@@ -9,6 +9,9 @@ customer1.save()
 customer2 = Customer.new({ 'name' => 'John', 'funds' => 25})
 customer2.save()
 
+customer3 = Customer.new({ 'name' => 'Bob', 'funds' => 50})
+customer3.save()
+
 film1 = Film.new({ 'title' => 'Batman Begins', 'price' => 10})
 film1.save()
 film2 = Film.new({ 'title' => 'Spiderman Ends', 'price' => 8})
@@ -19,6 +22,9 @@ ticket1.save()
 
 ticket2 = Ticket.new({ 'customer_id' => customer2.id, 'film_id' => film2.id})
 ticket2.save()
+
+ticket3 = Ticket.new({ 'customer_id' => customer3.id, 'film_id' => film2.id})
+ticket3.save()
 
 binding.pry
 nil
