@@ -1,4 +1,5 @@
 require_relative("../db/sql_runner")
+require_relative("../models/film")
 
 class Customer
 
@@ -27,8 +28,27 @@ class Customer
     sql = "SELECT films.* FROM films
            INNER JOIN tickets ON tickets.film_id = films.id
            WHERE customer_id = #{@id};"
-    results = SqlRunner.run(sql)
-    return results.map {|film| Film.new(film) }
+    films_hash = SqlRunner.run(sql)
+    films_objects = films_hash.map {|film| Film.new(film) }
+    return films_objects
+  end
+
+  def cost_for_chosen_films()
+    sql = "SELECT films.* FROM films
+           INNER JOIN tickets ON tickets.film_id = films.id
+           WHERE customer_id = #{@id};"
+    films_hash = SqlRunner.run(sql)
+    films_objects = films_hash.map {|film| Film.new(film) }
+    cost = 0
+    for object in films_objects
+      cost += object.price
+    end
+    return cost 
+  end
+
+  def funds_remaining()
+    funds_remaining = @funds - cost_for_chosen_films()
+    return funds_remaining
   end
 
   def tickets()
@@ -39,13 +59,17 @@ class Customer
     return tickets_objects
   end
 
-  # def total_tickets()
-  #   sql = "SELECT tickets.* FROM tickets
-  #          WHERE customer_id = #{@id};"
-  #   results = SqlRunner.run(sql)
-  #   for ticket in 
-  #   return results.length()
-  # end
+  def number_of_tickets()
+    sql = "SELECT tickets.* FROM tickets
+           WHERE customer_id = #{@id};"
+    count = 0
+    tickets_hash = SqlRunner.run(sql)
+    tickets_objects = tickets_hash.map {|ticket| Ticket.new(ticket) }
+    for object in tickets_objects
+      count += 1
+    end
+    return count
+  end
 
   def Customer.find(id)
     sql = "SELECT * FROM films WHERE id = #{id};"
@@ -69,6 +93,5 @@ class Customer
     customers = SqlRunner.run(sql)
     return customers.map { |customer| Customer.new(customer) }
   end
-
 
 end

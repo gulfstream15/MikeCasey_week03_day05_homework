@@ -30,6 +30,19 @@ class Film
     return Customer.get_many(sql)
   end
 
+  def how_many_customers()
+    sql = "SELECT customers.* FROM customers
+           INNER JOIN tickets ON tickets.customer_id = customers.id
+           WHERE film_id = #{@id};"
+    customers_hash = SqlRunner.run(sql)
+    customers_objects = customers_hash.map {|customer| Customer.new(customer) }
+    count = 0
+    for object in customers_objects
+      count += 1
+    end
+    return count
+  end
+
   def Film.all()
     sql = "SELECT * FROM films"
     return Film.get_many(sql)
