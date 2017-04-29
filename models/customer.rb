@@ -12,7 +12,13 @@ class Customer
   end
 
   def save()
-    sql = "INSERT INTO customers (name) VALUES ('#{ @name }') RETURNING id"
+    sql = "INSERT INTO customers (
+    name,
+    funds
+    ) VALUES (
+    '#{ @name }',
+    #{funds}
+    ) RETURNING id"
     user = SqlRunner.run( sql ).first
     @id = user['id'].to_i
   end
@@ -28,14 +34,16 @@ class Customer
   def tickets()
     sql = "SELECT tickets.* FROM tickets
            WHERE customer_id = #{@id};"
-    results = SqlRunner.run(sql)
-    return results.map {|ticket| Ticket.new(ticket) }
+    tickets_hash = SqlRunner.run(sql)
+    tickets_objects = tickets_hash.map {|ticket| Ticket.new(ticket) }
+    return tickets_objects
   end
 
   # def total_tickets()
   #   sql = "SELECT tickets.* FROM tickets
   #          WHERE customer_id = #{@id};"
   #   results = SqlRunner.run(sql)
+  #   for ticket in 
   #   return results.length()
   # end
 

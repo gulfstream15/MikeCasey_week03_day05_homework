@@ -8,7 +8,6 @@ customer1 = Customer.new({ 'name' => 'Mike', 'funds' => 40})
 customer1.save()
 customer2 = Customer.new({ 'name' => 'John', 'funds' => 25})
 customer2.save()
-
 customer3 = Customer.new({ 'name' => 'Bob', 'funds' => 50})
 customer3.save()
 
@@ -26,7 +25,7 @@ ticket2.save()
 ticket3 = Ticket.new({ 'customer_id' => customer3.id, 'film_id' => film2.id})
 ticket3.save()
 
-ticket4 = Ticket.new({ 'customer_id' => customer1.id, 'film_id' => film1.id})
+ticket4 = Ticket.new({ 'customer_id' => customer1.id, 'film_id' => film2.id})
 ticket4.save()
 
 binding.pry

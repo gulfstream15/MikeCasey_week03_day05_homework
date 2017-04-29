@@ -12,7 +12,13 @@ class Film
   end
 
   def save()
-    sql = "INSERT INTO films (title) VALUES ('#{ @title }') RETURNING id"
+    sql = "INSERT INTO films (
+    title,
+    price
+    ) VALUES (
+    '#{ @title }',
+    #{price}
+    ) RETURNING id"
     user = SqlRunner.run( sql ).first
     @id = user['id'].to_i
   end
