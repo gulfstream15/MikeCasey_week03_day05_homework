@@ -32,12 +32,11 @@ ticket4.save()
 screenings1 = Screening.new({'time1' => '14:30', 'time2' => '17:30', 'time3' => '21:30'})
 screenings1.save()
 
-# screenings1 = Screening.new({'time1' => '14:30', 'time2' => '17:30', 'time3' => '21:30' })
-# screenings1.save()
-# screenings2 = Screening.new({'time1' => '13:30', 'time2' => '18:30', 'time3' => '22:30' })
-# screenings2.save()
-# # screenings3 = Screening.new({'time1' => '11:30', 'time2' => '15:30', 'time3' => '23:30' })
-# screenings3.save()
+screenings2 = Screening.new({'time1' => '11:00', 'time2' => '13:00', 'time3' => '19:00'})
+screenings2.save()
+
+screenings3 = Screening.new({'time1' => '12:15', 'time2' => '14:15', 'time3' => '22:15'})
+screenings3.save()
 
 
 binding.pry
