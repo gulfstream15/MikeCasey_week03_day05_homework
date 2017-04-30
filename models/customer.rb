@@ -19,7 +19,7 @@ class Customer
     ) VALUES (
     '#{ @name }',
     #{funds}
-    ) RETURNING id"
+    ) RETURNING id;"
     user = SqlRunner.run( sql ).first
     @id = user['id'].to_i
   end

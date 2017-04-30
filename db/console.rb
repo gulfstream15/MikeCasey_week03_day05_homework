@@ -29,12 +29,12 @@ ticket3.save()
 ticket4 = Ticket.new({ 'customer_id' => customer1.id, 'film_id' => film2.id})
 ticket4.save()
 
-screening1 = Screening.new({'time' => '21:30'})
-# screening1.save()
-screening2 = Screening.new({'time' => '17:30'})
-# screening2.save()
-screening3 = Screening.new({'time' => '19:30'})
-# screening3.save()
+screening1 = Screening.new({'time' => 'hello'})
+screening1.save()
+screening2 = Screening.new({'time' => 'goodbye'})
+screening2.save()
+screening3 = Screening.new({'time' => 'staying'})
+screening3.save()
 
 binding.pry
 nil

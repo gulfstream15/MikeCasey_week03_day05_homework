@@ -19,15 +19,20 @@ class Screening
     user = SqlRunner.run( sql ).first
     @id = user['id'].to_i
   end
-  
+
   def Screening.all()
     sql = "SELECT * FROM screenings"
     return Screening.get_many(sql)
   end
 
+  def Screening.delete_all() 
+    sql = "DELETE FROM screenings"
+    SqlRunner.run(sql)
+  end
+
   def Screening.get_many(sql)
     screenings = SqlRunner.run(sql)
-    return screenings.map { |screening| Screening.new(screenings) }
+    return screenings.map { |screening| Screening.new(screening) }
   end
 
 end
