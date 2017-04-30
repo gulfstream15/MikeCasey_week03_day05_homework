@@ -3,19 +3,27 @@ require_relative("../db/sql_runner")
 class Screening
 
   attr_reader :id
-  attr_accessor :time
+  attr_accessor :time1, :time2, :time3
+
+  # , :time2, :time3
 
   def initialize( options )
     @id = options['id'].to_i
-    @time = options['time']
+    @time1 = options['time1']
+    @time2 = options['time2']
+    @time3 = options['time3']
   end
 
   def save()
     sql = "INSERT INTO screenings (
-    time
+    time1,
+    time2,
+    time3
     ) VALUES (
-    '#{ @time }'
-    ) RETURNING id"
+    '#{ time1 }',
+    '#{ time2 }',
+    '#{ time3 }'
+    ) RETURNING id;"
     user = SqlRunner.run( sql ).first
     @id = user['id'].to_i
   end

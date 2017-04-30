@@ -23,5 +23,7 @@ CREATE TABLE tickets (
 
 CREATE TABLE screenings (
   id SERIAL4 PRIMARY KEY,
-  time VARCHAR(255)
+  time1 VARCHAR(255),
+  time2 VARCHAR(255),
+  time3 VARCHAR(255)
 )
