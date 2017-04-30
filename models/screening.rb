@@ -28,6 +28,15 @@ class Screening
     @id = user['id'].to_i
   end
 
+  # def film()
+  #   sql = "SELECT films.* FROM films
+  #          INNER JOIN tickets ON tickets.film_id = films.id
+  #          WHERE film_id = #{@id};"
+  #   films_hash = SqlRunner.run(sql)
+  #   films_objects = films_hash.map {|film| Film.new(film) }
+  #   return films_objects
+  # end
+
   def Screening.all()
     sql = "SELECT * FROM screenings"
     return Screening.get_many(sql)
