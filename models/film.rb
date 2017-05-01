@@ -23,6 +23,20 @@ class Film
     @id = user['id'].to_i
   end
 
+  def update()
+    sql = "
+    UPDATE films SET (
+      title,
+      price
+    ) = (
+     '#{ @title }',
+      #{price}
+    ) 
+    WHERE id = #{@id};"
+          
+    SqlRunner.run(sql)
+  end
+
   def customers()
     sql = "SELECT customers.* FROM customers
            INNER JOIN tickets ON tickets.customer_id = customers.id
